@@ -7,7 +7,7 @@
 
 <form method="POST" action="/login/">
   {% csrf_token %}
-  <input type="hidden" name="redirect" value="{{redirect}}" />
+  <input type="hidden" name="redirect" value="{{redirect}}">
   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
     <input
       class="mdl-textfield__input"
@@ -26,11 +26,14 @@
     />
     <label class="mdl-textfield__label" for="sample3">Password...</label>
   </div>
-  <input type="hidden" name="redirect" value="{{redirect}}" />
+  
   <button
     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
   >
     Login
   </button>
 </form>
+
+<h2>Are you new here?</h2>
+<p>Click <a href="/register/">here</a> to sign up.</p>
 {% endblock %}

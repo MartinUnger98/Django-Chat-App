@@ -1,0 +1,46 @@
+{% extends "base.html" %} {% block content %}
+
+{% if userAlreadyExists %}
+<p>User already exists</p>
+{% endif %}
+
+{% if emailAlreadyExists %}
+<p>Email already exists</p>
+{% endif %}
+
+<form method="POST" action="/register/">
+    {% csrf_token %}    
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <input
+        class="mdl-textfield__input"
+        name="newusername"
+        type="text"
+        id="sample3"
+      />
+      <label class="mdl-textfield__label" for="sample3">New Username...</label>
+    </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input
+          class="mdl-textfield__input"
+          name="newuseremail"
+          type="email"
+          id="sample3"
+        />
+        <label class="mdl-textfield__label" for="sample3">New Useremail...</label>
+      </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <input
+        class="mdl-textfield__input"
+        name="newpassword"
+        type="password"
+        id="sample3"
+      />
+      <label class="mdl-textfield__label" for="sample3">New Password...</label>
+    </div>
+    <button
+      class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+    >
+      Sign up
+    </button>
+  </form>
+{% endblock %}

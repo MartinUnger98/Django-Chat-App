@@ -4,15 +4,20 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-
+from django.http import JsonResponse
+from django.core import serializers
 
 @login_required(login_url='/login/')
 def index(request):
+    """
+    this is a view to render the chat html.
+    """
     if request.method == 'POST':
         print("Received data: " + request.POST['textmessage'])
         myChat = Chat.objects.get(id=1)
-        Message.objects.create(text=request.POST['textmessage'], chat=myChat, author=request.user, receiver=request.user,)
-    
+        newMessage = Message.objects.create(text=request.POST['textmessage'], chat=myChat, author=request.user, receiver=request.user,)
+        serialited_obj = serializers.serialize('json', [newMessage,])
+        return JsonResponse(serialited_obj[1:-1], safe=False)
     chatMessages = Message.objects.filter(chat__id=1)
     return render(request, 'chat/index.html', {'messages': chatMessages})
 
